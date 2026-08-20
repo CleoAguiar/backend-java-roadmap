@@ -78,7 +78,18 @@ A RESTful API that allows authenticated users to manage their own tas
 - [roadmap.sh Solution](https://roadmap.sh/projects/todo-list-api/solutions?u=6a3b28a65d8dee437edeeda3)
 - [LinkedIn Project Post](https://lnkd.in/p/dzAn5YMJ)
 
----
+Build a service that generates short URLs, redirects users to the original addresses, and tracks access statistics.
+
+**Main topics:**
+
+- Unique short-code generation
+- HTTP redirects
+- Database indexing
+- Caching with Redis
+- Rate limiting
+- Concurrency and data consistency
+- Performance testing
+- Containerized deployment
 
 ### 2. Intermediate — [URL Shortening Service](https://roadmap.sh/projects/url-shortening-service) 🚧
 
@@ -127,7 +138,7 @@ Build an e-commerce platform using microservices that can be developed, deployed
 
 This repository serves as the central hub for my backend development roadmap.
 
-Each project has its own dedicated GitHub repository containing:
+This repository serves as the central hub for my backend learning journey. Each project has its own dedicated GitHub repository containing:
 
 - Source code
 - Technical documentation
