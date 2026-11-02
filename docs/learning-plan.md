@@ -1,256 +1,218 @@
 # 🎯 Learning Plan
 
-This document defines my study direction and practical goals as I progress toward becoming a **Java Backend Developer**.
+This document defines my progression from **Java Backend Development** toward **System Architecture and Platform Engineering**.
 
-The focus is not only on learning technologies, but also on applying them through increasingly complex backend projects, following good software engineering practices.
+The learning strategy is project-driven: each stage introduces a new class of engineering problems while reusing skills developed earlier.
 
----
+## 🧭 Long-term progression
 
-# 🗓️ July–August 2026 — Backend Foundations
-
-## Main Goals
-
-* Strengthen Java fundamentals
-* Learn REST API development with Spring Boot
-* Understand layered backend architecture
-* Work with relational databases and persistence
-* Implement authentication and authorization
-* Practice automated testing
-* Learn Docker fundamentals
-* Apply Git and GitHub workflows
-* Build and publish the first portfolio project
+1. **Backend foundations** — build, test, secure, document, containerize, and release APIs.
+2. **Microservices** — understand service boundaries, distributed communication, data consistency, and operational complexity.
+3. **System Architecture** — reason about system-wide requirements, quality attributes, trade-offs, and scalability.
+4. **Platform Engineering** — build reliable, automated platforms and improve developer experience.
 
 ---
 
-## Topics Covered
+# ✅ July–August 2026 — Backend Foundations
 
-### ☕ Java & Backend Fundamentals
+## Project milestone — Todo List API
 
-* Object-Oriented Programming
-* HTTP methods and status codes
-* REST API principles
-* Exception handling
-* Input validation
-* DTOs and data mapping
+**Status:** Completed — `v1.0.0`, published August 18, 2026.
 
-### 🌱 Spring Boot
+Topics practiced:
+- Java, object-oriented programming, HTTP, REST, and API contracts
+- Spring Boot, dependency injection, and layered architecture
+- JPA, Hibernate, PostgreSQL, and pagination
+- JWT authentication, authorization, and resource ownership
+- Validation and exception handling
+- JUnit, Mockito, and integration tests
+- Docker, GitHub Actions, OpenAPI, versioning, and releases
 
-* Controllers
-* Services
-* Repositories
-* Dependency Injection
-* Spring Data JPA
-* Application configuration
-
-### 🗄️ Persistence
-
-* JPA & Hibernate
-* PostgreSQL
-* Entity modeling
-* Repository pattern
-* Pagination
-
-### 🔐 Security
-
-* Authentication and authorization
-* JWT
-* Password hashing with BCrypt
-* Stateless authentication
-* Resource ownership and access control
-
-### 🧪 Testing
-
-* Unit testing
-* Integration testing
-* JUnit
-* Mockito
-* Authorization scenarios
-
-### 🐳 Delivery & Tooling
-
-* Docker
-* Maven
-* Git and GitHub
-* Branching workflow
-* GitHub Actions
-* API documentation with Swagger/OpenAPI
-* Semantic versioning
-* Changelog and GitHub Releases
+**Lifecycle:** design → implementation → persistence → security → testing → documentation → containerization → CI → release.
 
 ---
 
-## 🏁 Project Milestone — Todo List API
+# ✅ September–October 2026 — Intermediate Backend Development
 
-The first portfolio project was completed and released as **v1.0.0**.
+## Project milestone — URL Shortening Service
 
-The project provided practical experience with the complete development lifecycle of a backend API:
+**Status:** Completed — `v1.0.0`, published October 30, 2026.
 
-**design → implementation → persistence → security → testing → documentation → containerization → CI → release**
+Topics practiced:
+- Domain modeling and API contract design
+- Short-code generation and URL mapping
+- PostgreSQL and Flyway migrations
+- Validation and global exception handling
+- Automated tests
+- Docker image and container workflow
+- GitHub Actions CI workflow
+- Documentation and release management
 
-### Outcome
-
-* REST API built with Java and Spring Boot
-* PostgreSQL persistence
-* JWT authentication and authorization
-* Automated tests
-* Swagger/OpenAPI documentation
-* Docker containerization
-* Continuous Integration with GitHub Actions
-* Versioned release published on GitHub
-
----
-
-# 🗓️ September 2026 — Intermediate Backend Development
-
-## Main Goal
-
-Build the **URL Shortening Service** while moving beyond basic CRUD development and focusing more on application design, data modeling, reliability, and engineering decisions.
+**Key progression:** moving beyond conventional CRUD endpoints and completing a second end-to-end backend delivery cycle.
 
 ---
 
-## Week 1 — Project Foundation & Domain Design
+# 🚧 November 2026 onward — Microservices with E-Commerce
 
-* Define functional and non-functional requirements
-* Design the URL shortening domain
-* Define API contracts
-* Model persistence entities
-* Configure Spring Boot and PostgreSQL
-* Establish project structure
-* Prepare development environment
+## Main objective
 
-### Focus
+Build the **Scalable E-Commerce Platform** to understand the architectural and operational challenges of microservices through practical business workflows.
 
-> Understand the problem before implementing the solution.
+The project is not a race to use many frameworks. First understand the business workflows and decide where independent services provide a meaningful benefit.
+
+## Suggested learning sequence
+
+### Stage 1 — Understand the domain and define boundaries
+- Identify core business capabilities: catalog, inventory, cart, order, payment, and identity.
+- Map the main user journeys, especially checkout.
+- Define service responsibilities and ownership.
+- Identify the data each service owns.
+- Document boundaries and assumptions before implementation.
+
+**Deliverable:** context diagram, service responsibility map, and initial API/event contracts.
+
+### Stage 2 — Build the first services
+- Create a small number of Spring Boot services.
+- Give each service a clear responsibility.
+- Define independent persistence ownership.
+- Configure local development with Docker Compose.
+- Add health checks, configuration, and service-level tests.
+
+**Deliverable:** a working end-to-end flow across a deliberately small set of services.
+
+### Stage 3 — Communication and integration
+- Compare synchronous HTTP with asynchronous messaging.
+- Define event schemas and message ownership.
+- Implement a broker only when an asynchronous workflow requires it.
+- Handle duplicate messages and idempotent consumers.
+- Understand delivery guarantees and eventual consistency.
+
+**Deliverable:** at least one business workflow that uses an asynchronous event safely.
+
+### Stage 4 — Distributed data and reliability
+- Understand why an ACID transaction cannot simply span independent databases.
+- Explore Saga orchestration or choreography for a business workflow.
+- Handle timeouts, retries, backoff, and circuit breakers.
+- Design compensation and failure paths.
+- Avoid retry storms and duplicate side effects.
+
+**Deliverable:** documented failure scenarios and tested recovery behavior for order/checkout processing.
+
+### Stage 5 — Observability and delivery
+- Use structured logs with correlation identifiers.
+- Collect service metrics and health information.
+- Introduce distributed tracing.
+- Build CI pipelines for the services.
+- Run the system locally with repeatable container configuration.
+- Document deployment and operational procedures.
+
+**Deliverable:** a reproducible environment and enough telemetry to investigate a request across services.
+
+### Stage 6 — Review architecture and trade-offs
+- Compare the result with a modular monolith alternative.
+- Identify operational overhead and duplicated concerns.
+- Explain why each service boundary exists.
+- Record important decisions as ADRs.
+- Identify what should be simplified.
+
+**Deliverable:** architecture overview, ADRs, and project retrospective.
+
+## Concepts to understand—not just implement
+
+- Bounded contexts and service boundaries
+- Database per service and data ownership
+- Synchronous vs. asynchronous communication
+- Messaging, events, and eventual consistency
+- Idempotency and duplicate delivery
+- Saga pattern and compensating actions
+- Timeouts, retries, circuit breakers, and bulkheads
+- API Gateway and service discovery
+- Centralized logging, metrics, and distributed tracing
+- Deployment independence and operational complexity
+
+## Scope guardrails
+
+- Start with a small number of services; do not create one service per database table.
+- Do not introduce Kubernetes before Docker Compose and service operation are understood.
+- Choose RabbitMQ or Kafka based on the messaging requirements; do not adopt both by default.
+- Avoid distributed transactions where eventual consistency is sufficient.
+- Keep security, tests, documentation, and CI in scope from the beginning.
+- Record trade-offs and alternatives, including when a modular monolith would be simpler.
 
 ---
 
-## Week 2 — Core URL Shortening
+# ⏳ Later stage — System Architecture
 
-* Create shortened URLs
-* Implement short-code generation
-* Store URL mappings
-* Redirect short URLs
-* Validate URLs
-* Handle invalid and expired resources
-* Improve exception handling
+After the microservices project, shift from implementing individual services to reasoning about whole systems.
 
-### Focus
+Study:
+- Functional and non-functional requirements
+- Quality attributes and architectural trade-offs
+- Capacity estimation and bottleneck analysis
+- Availability, scalability, and fault tolerance
+- Caching, data partitioning, replication, and consistency
+- Architecture styles and integration patterns
+- Architecture Decision Records
+- System design diagrams and technical communication
 
-> Build a clean and reliable core domain.
-
----
-
-## Week 3 — Reliability & Quality
-
-* Implement automated tests
-* Add integration tests
-* Review edge cases
-* Handle short-code collisions
-* Improve validation
-* Add structured logging
-* Review application configuration
-
-### Focus
-
-> Make the application predictable, testable, and easier to troubleshoot.
+**Expected outcome:** explain and defend architecture decisions based on requirements and trade-offs, not technology preference.
 
 ---
 
-## Week 4 — Delivery & Release
+# ⏳ Later stage — Platform Engineering
 
-* Containerize the application
-* Configure CI with GitHub Actions
-* Document the API with Swagger/OpenAPI
-* Improve project documentation
-* Review code and architecture
-* Prepare changelog
-* Publish release `v1.0.0`
+Build on backend and distributed-systems knowledge to understand how teams build, deploy, and operate software at scale.
 
-### Focus
+Study:
+- Linux, networking, and troubleshooting
+- Containers and Kubernetes
+- Infrastructure as Code
+- GitOps
+- CI/CD platform design
+- Observability and SRE practices
+- Secrets and configuration management
+- Developer experience and Internal Developer Platforms
+- Security, governance, and automation
 
-> Treat deployment and release as part of software development.
-
----
-
-# 🔭 Next Phase — Advanced Backend Foundations
-
-After completing the URL Shortening Service, the next project will be a **Scalable E-Commerce Platform**.
-
-The goal will be to gradually introduce more advanced backend and system design concepts, including:
-
-* Modular application design
-* Advanced database modeling
-* Transactions and consistency
-* Caching
-* Asynchronous processing
-* Messaging
-* Observability
-* Performance
-* Scalability
-* Resilience
-* API design at larger scale
-* Deployment and operational concerns
-
-The focus should remain on understanding **why and when** these techniques are useful rather than adding technologies only for complexity.
+**Expected outcome:** understand how to provide reusable, secure, observable paths for development teams to deliver software.
 
 ---
 
 # 🧭 Learning Principles
 
-Throughout the roadmap:
+1. **Build before adding complexity.** Start with the simplest architecture that meets the requirements.
+2. **Understand before abstracting.** Introduce patterns and technologies to solve observed problems.
+3. **Test important behavior.** Prioritize business rules, security boundaries, integration points, and failure paths.
+4. **Document engineering decisions.** Record alternatives, trade-offs, and reasons.
+5. **Treat operations as part of development.** Logging, configuration, containers, CI, debugging, and deployment matter.
+6. **Prefer depth over project count.** A well-designed and explained project is more valuable than superficial technology coverage.
+7. **Compare alternatives.** Be able to explain why a modular monolith, synchronous call, or simpler deployment might be preferable.
 
-1. **Build before adding complexity**
-   Start with the simplest architecture that correctly solves the problem.
+## 🔁 Weekly review
 
-2. **Understand before abstracting**
-   Avoid introducing patterns or technologies without understanding the problem they solve.
+- What did I learn and implement without guidance?
+- What was difficult, and how did I investigate it?
+- Which concepts can I explain without looking at code?
+- What trade-off did I make, and what alternative did I reject?
+- What should I review or simplify?
 
-3. **Test important behavior**
-   Prioritize business rules, security boundaries, edge cases, and integration points.
+## 🏁 Project retrospective
 
-4. **Document engineering decisions**
-   Record important architectural and technical choices when they improve understanding of the project.
+- What new engineering problems did this project introduce?
+- Which decisions could I explain in an interview?
+- What failure scenarios did I test?
+- What operational complexity did I add?
+- Would a simpler architecture have worked?
+- What should I carry into the next stage?
 
-5. **Treat operations as part of backend development**
-   Logging, configuration, containers, CI, debugging, and deployment are part of building reliable applications.
+## 📊 Roadmap Status
 
-6. **Prefer depth over project count**
-   A well-designed and documented project is more valuable than several superficial implementations.
+| Stage | Project / Focus | Status |
+| --- | --- | --- |
+| Foundation | Todo List API | ✅ Completed — `v1.0.0` |
+| Intermediate | URL Shortening Service | ✅ Completed — `v1.0.0` |
+| Advanced | Scalable E-Commerce Platform / Microservices | 🚧 Next |
+| Future | System Architecture | ⏳ Planned |
+| Future | Platform Engineering | ⏳ Planned |
 
----
-
-# 🔁 Review Strategy
-
-At the end of each week, review:
-
-* What did I learn?
-* What did I implement without guidance?
-* What was difficult?
-* What concepts do I understand better now?
-* What still needs review?
-* What technical decision did I make and why?
-* What would I improve if I implemented it again?
-
-At the end of each project, review:
-
-* What new backend concepts did this project introduce?
-* Which decisions could I explain in a technical interview?
-* Which problems required debugging or investigation?
-* What trade-offs did I encounter?
-* What would need to change if the application had significantly more users?
-* What should I carry forward into the next project?
-
----
-
-# 🚀 Roadmap
-
-| Phase        | Project                      | Main Focus                                                            | Status               |
-| ------------ | ---------------------------- | --------------------------------------------------------------------- | -------------------- |
-| Foundation   | Todo List API                | REST, Spring Boot, persistence, security, testing and delivery        | ✅ Completed — v1.0.0 |
-| Intermediate | URL Shortening Service       | Application design, reliability and deeper backend practices          | 🚧 In Progress       |
-| Advanced     | Scalable E-Commerce Platform | Scalability, distributed systems and production-oriented architecture | ⏳ Planned            |
-
----
-
-> The goal is not to collect technologies.
-> The goal is to progressively become capable of **designing, building, testing, debugging, and evolving reliable backend systems**.
+> The goal is not to collect technologies. The goal is to become capable of **designing, building, testing, debugging, and evolving reliable systems—and understanding the platforms that deliver them**.

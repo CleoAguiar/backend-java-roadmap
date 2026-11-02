@@ -699,17 +699,42 @@ Documentation, configuration, testing, packaging, and release preparation requir
 
 ## URL Shortening Service
 
-### Current Focus
+**Milestone:** `v1.0.0` published on October 30, 2026.
 
-* Domain modeling
-* API design
-* URL mapping
-* Short-code generation
-* Persistence design
+### What I Practiced
 
-### Lessons Learned
+* Designing a domain-specific REST API
+* Modeling URL mappings and short codes
+* Persisting data in PostgreSQL
+* Managing schema evolution with Flyway
+* Validating input and handling application errors globally
+* Writing automated tests
+* Containerizing the application with Docker
+* Building a CI workflow with GitHub Actions
+* Preparing documentation and a versioned release
 
-*To be updated as the project evolves.*
+### Lessons to Retain
+
+**A second project should deepen engineering judgment, not just repeat CRUD.**
+The URL Shortening Service added domain-specific behavior and required decisions around validation, persistence, and the release workflow.
+
+**Database migrations make schema evolution explicit.**
+Flyway provides a versioned history of database changes, making setup and evolution more repeatable.
+
+**CI is a feedback mechanism.**
+A workflow that builds and tests the application helps detect regressions before changes are integrated.
+
+**A release is an engineering milestone.**
+A project is not finished only when its endpoints work; configuration, tests, documentation, containerization, and release preparation are also part of delivery.
+
+### Questions for Retrospective
+
+* Which URL validation rules belong at the API boundary and which belong in the domain?
+* How would I prevent or handle short-code collisions?
+* Which database indexes support the actual access patterns?
+* What should happen when a short URL is missing, expired, or disabled?
+* Which operations would benefit from caching, and what invalidation problem would that create?
+* What would need to change to handle a much higher redirect volume?
 
 ---
 
@@ -791,3 +816,35 @@ I should be able to explain, without relying only on code:
 * What does the CI pipeline protect against?
 * How would I investigate an API that suddenly started returning errors?
 * What would I change if the application needed to handle significantly more traffic?
+
+
+---
+
+# 🌐 Distributed Systems — Upcoming Study
+
+These topics will be studied and documented during the Scalable E-Commerce Platform project.
+
+## Service Boundaries
+* [ ] Bounded contexts and business capabilities
+* [ ] Service responsibilities and data ownership
+* [ ] Modular monolith vs. microservices trade-offs
+
+## Communication & Consistency
+* [ ] Synchronous HTTP vs. asynchronous messaging
+* [ ] Event schemas and versioning
+* [ ] Eventual consistency
+* [ ] Idempotent consumers and duplicate delivery
+* [ ] Saga pattern and compensating actions
+
+## Resilience & Observability
+* [ ] Timeouts, retries, and exponential backoff
+* [ ] Circuit breakers and bulkheads
+* [ ] Correlation IDs and structured logs
+* [ ] Metrics and distributed tracing
+* [ ] Health checks and failure diagnosis
+
+## Architecture Review
+* [ ] Document service boundaries and alternatives
+* [ ] Record significant choices as ADRs
+* [ ] Explain operational complexity introduced by each service
+* [ ] Compare the result with a modular monolith
