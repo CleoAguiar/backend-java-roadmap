@@ -11,7 +11,7 @@ The goal is not to read as many technical books as possible, but to study a smal
 ## Clean Code
 
 **Author:** Robert C. Martin
-**Status:** 📖 Reading
+**Status:** ✅ Finished
 
 ### Focus
 
@@ -101,7 +101,7 @@ The goal is not to read as many technical books as possible, but to study a smal
 The planned reading order is:
 
 ```text
-Clean Code
+Clean Code (completed)
     ↓
 Clean Architecture
     ↓

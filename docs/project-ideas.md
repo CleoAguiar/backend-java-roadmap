@@ -1,10 +1,8 @@
 # 🚀 Project Ideas & Status
 
-This document tracks the main projects in my **Java Backend Roadmap**, from foundational REST APIs to more complex and scalable backend systems.
+This document tracks the practical projects in my roadmap and the engineering questions each one should answer.
 
-Each project introduces new concepts while reinforcing practices learned in previous projects.
-
-The goal is to prioritize **depth, engineering decisions, and progressive complexity** rather than simply increasing the number of completed projects.
+The progression is intentional: **complete backend applications → distributed applications → system-wide architecture → platforms for software delivery**.
 
 ---
 
@@ -12,38 +10,28 @@ The goal is to prioritize **depth, engineering decisions, and progressive comple
 
 ## Todo List API
 
-**Status:** ✅ Completed — `v1.0.0`
+**Status:** ✅ Completed — `v1.0.0` (August 18, 2026)  
 **Tech:** Java + Spring Boot + PostgreSQL
 
 ### Main Features
-
-* User registration and authentication
-* JWT-based authentication
-* Todo CRUD operations
-* Todo status management
-* User-specific resource access
-* Input validation
-* Pagination
-* Global exception handling
-* API documentation with Swagger/OpenAPI
+- User registration and authentication
+- JWT-based authentication
+- Todo CRUD operations and status management
+- User-specific resource access
+- Input validation, pagination, and global exception handling
+- API documentation with Swagger/OpenAPI
 
 ### Engineering Practices
-
-* Layered architecture
-* DTOs
-* Spring Data JPA
-* BCrypt password hashing
-* Unit tests
-* Integration tests
-* Docker containerization
-* Continuous Integration with GitHub Actions
-* Git branching workflow
-* Semantic versioning
-* Changelog and GitHub Releases
+- Layered architecture and DTOs
+- Spring Data JPA
+- BCrypt password hashing
+- Unit and integration tests
+- Docker containerization
+- CI with GitHub Actions
+- Git workflow, semantic versioning, changelog, and GitHub Releases
 
 ### Main Learning Outcome
-
-Build and release a complete REST API while understanding the fundamental components of a modern Spring Boot backend application.
+Build, test, secure, document, containerize, and release a complete REST API.
 
 ---
 
@@ -51,122 +39,163 @@ Build and release a complete REST API while understanding the fundamental compon
 
 ## URL Shortening Service
 
-**Status:** 🚧 In Progress
+**Status:** ✅ Completed — `v1.0.0` (October 30, 2026)  
 **Tech:** Java + Spring Boot + PostgreSQL
 
-### Planned Core Features
-
-* Create shortened URLs
-* Generate unique short codes
-* Redirect short URLs to original URLs
-* Persist URL mappings
-* Validate URLs
-* Handle invalid or unavailable short codes
-* Track basic URL metadata
-
-### Engineering Focus
-
-* API contract design
-* Domain modeling
-* Short-code generation strategies
-* Collision handling
-* Database constraints
-* Error handling
-* Structured logging
-* Automated testing
-* Integration testing
-* Configuration management
-* Docker
-* Continuous Integration
-* API documentation
+### Implemented / Practiced
+- REST API and URL mapping
+- Short-code generation
+- PostgreSQL persistence and Flyway migrations
+- Domain modeling
+- URL validation and global exception handling
+- Automated tests
+- Docker
+- GitHub Actions CI
+- API documentation and release workflow
 
 ### Main Learning Outcome
-
-Move beyond basic CRUD development by working with domain-specific logic, edge cases, reliability, and technical design decisions.
+Move beyond basic CRUD by implementing domain-specific behavior, handling edge cases, and completing a reliable delivery workflow.
 
 ---
 
-# 🔵 Advanced Level
+# 🔵 Advanced Level — Next Project
 
 ## Scalable E-Commerce Platform
 
-**Status:** ⏳ Planned
-**Tech:** Java + Spring Boot ecosystem
+**Status:** 🚧 Next project  
+**Architecture focus:** Microservices  
+**Tech direction:** Java + Spring Boot ecosystem
 
-### Planned Domains
+### Learning Objective
 
-* Users
-* Products
-* Inventory
-* Shopping carts
-* Orders
-* Payments
-* Order lifecycle
+Understand when and why a system may be decomposed into independently deployable services, and learn the trade-offs this creates in communication, data consistency, testing, deployment, and operations.
 
-### Engineering Focus
+### Candidate Business Domains
+- Product catalog
+- Inventory
+- Shopping cart
+- Orders
+- Payments
+- Users / identity
 
-The exact architecture and technologies will be defined as the project evolves, based on the problems that need to be solved.
+These are candidate boundaries, not a requirement to create six services immediately. Boundaries should emerge from business capabilities, data ownership, and workflow requirements.
 
-Topics expected to be explored include:
+### Suggested Implementation Progression
 
-* Modular architecture
-* Advanced relational data modeling
-* Transactions
-* Data consistency
-* Caching
-* Asynchronous processing
-* Messaging
-* Observability
-* Resilience
-* Performance
-* Scalability
-* Security
-* Containerization
-* Deployment strategies
+#### 1. Domain and boundaries
+- Map the main business workflows.
+- Define service responsibilities and data ownership.
+- Identify invariants and consistency requirements.
+- Draw a context diagram and service interaction map.
+
+#### 2. Service implementation
+- Implement a small initial set of Spring Boot services.
+- Define explicit API contracts.
+- Give each service ownership of its data.
+- Use Docker Compose for local orchestration.
+- Add health checks and service-level tests.
+
+#### 3. Communication
+- Use synchronous HTTP where an immediate response is required.
+- Introduce asynchronous messaging for decoupled workflows.
+- Select RabbitMQ or Kafka based on the problem and learning goals.
+- Handle duplicate events and make consumers idempotent.
+
+#### 4. Distributed workflows
+- Understand eventual consistency.
+- Explore Saga orchestration or choreography.
+- Implement compensating actions for failed workflows.
+- Apply timeouts, retries with backoff, and circuit breakers.
+
+#### 5. Observability and delivery
+- Structured logs and correlation IDs
+- Metrics and health checks
+- Distributed tracing
+- CI workflows for each service
+- Repeatable local environment and deployment documentation
+
+### Constraints and Non-Goals
+- Do not split every entity or table into a service.
+- Do not use microservices merely to make the project look advanced.
+- Do not introduce Kubernetes before understanding containers and local orchestration.
+- Do not adopt multiple brokers without a concrete reason.
+- Keep the architecture small enough to explain and operate.
 
 ### Main Learning Outcome
+Explain the benefits and costs of microservices, design service boundaries, implement communication and failure handling, and observe a distributed workflow end to end.
 
-Learn how backend architecture evolves when an application has multiple business domains, larger workloads, integration points, and stronger reliability requirements.
+---
 
-The project should begin with the simplest architecture that satisfies its requirements and evolve only when additional complexity is justified.
+# 🧭 Future Learning Stages
+
+## System Architecture
+
+**Status:** ⏳ Planned — after the E-Commerce project
+
+Focus:
+- Functional and non-functional requirements
+- Quality attributes and trade-offs
+- Scalability, availability, and fault tolerance
+- Capacity estimation and bottleneck analysis
+- Data replication, partitioning, caching, and consistency
+- Architecture styles and integration patterns
+- Architecture Decision Records (ADRs)
+- System design documentation and communication
+
+**Learning outcome:** design and defend system-level architecture based on requirements, constraints, and trade-offs.
+
+## Platform Engineering
+
+**Status:** ⏳ Planned — after strengthening architecture foundations
+
+Focus:
+- Linux and networking
+- Containers and Kubernetes
+- Infrastructure as Code
+- GitOps and CI/CD platform design
+- Observability and reliability
+- Secrets and configuration management
+- Developer experience
+- Internal Developer Platforms
+- Automation, security, and governance
+
+**Learning outcome:** understand how to build and operate reusable platforms that help development teams deliver software safely and efficiently.
 
 ---
 
 # 🗺️ Project Progression
 
-| Level           | Project                      | Primary Focus                                                       | Status         |
-| --------------- | ---------------------------- | ------------------------------------------------------------------- | -------------- |
-| 🟢 Foundation   | Todo List API                | REST APIs, Spring Boot fundamentals, security, testing and delivery | ✅ Completed    |
-| 🟡 Intermediate | URL Shortening Service       | Domain logic, reliability and engineering decisions                 | 🚧 In Progress |
-| 🔵 Advanced     | Scalable E-Commerce Platform | Architecture, scalability and production-oriented backend design    | ⏳ Planned      |
+| Stage | Project / Focus | Primary question | Status |
+| --- | --- | --- | --- |
+| Foundation | Todo List API | Can I deliver a complete, secure REST API? | ✅ Completed |
+| Intermediate | URL Shortening Service | Can I implement reliable domain behavior and delivery? | ✅ Completed |
+| Advanced | Scalable E-Commerce Platform | Can I build and operate workflows across services? | 🚧 Next |
+| Future | System Architecture | Can I reason about and defend system-wide trade-offs? | ⏳ Planned |
+| Future | Platform Engineering | Can I create reliable paths for teams to build and deliver software? | ⏳ Planned |
 
 ---
 
 # 🔄 Project Evolution
 
-Projects do not necessarily end when their first stable version is released.
+A project may evolve after its first stable release when there is a meaningful reason:
+- Refactoring and maintainability
+- Additional automated tests
+- Dependency and security updates
+- Documentation improvements
+- Performance improvements
+- Observability
+- Architectural improvements
 
-When justified, completed projects may receive improvements such as:
-
-* Refactoring
-* Additional automated tests
-* Dependency updates
-* Documentation improvements
-* Performance improvements
-* Security improvements
-* Observability
-* Architectural improvements
-
-New features or technologies should be introduced when they solve a meaningful problem rather than only to increase the project's technical stack.
+New features and technologies should solve a real problem or reinforce a learning objective.
 
 ---
 
 # 📌 Status Legend
 
-* ⏳ **Planned** — Not started
-* 🚧 **In Progress** — Currently under development
-* ✅ **Completed** — Stable version released
-* 🔄 **Evolving** — Completed project receiving meaningful improvements
+- ⏳ **Planned** — Not started
+- 🚧 **In Progress / Next** — Current focus or next project
+- ✅ **Completed** — Stable version released
+- 🔄 **Evolving** — Completed project receiving meaningful improvements
 
 ---
 
@@ -174,13 +203,14 @@ New features or technologies should be introduced when they solve a meaningful p
 
 > Each project should answer a new engineering question.
 
-**Todo List API:**
-Can I build, test, secure, document, containerize, and release a complete REST API?
+**Todo List API:** Can I build, test, secure, document, containerize, and release a complete REST API?
 
-**URL Shortening Service:**
-Can I design and implement reliable backend behavior beyond conventional CRUD operations?
+**URL Shortening Service:** Can I design and implement reliable backend behavior beyond conventional CRUD operations?
 
-**Scalable E-Commerce Platform:**
-Can I design a backend that remains maintainable and reliable as business rules, integrations, and scale increase?
+**Scalable E-Commerce Platform:** Can I design service boundaries and operate business workflows across independently deployable services?
 
-The objective is to demonstrate **progressive backend engineering capability**, not simply a collection of frameworks and technologies.
+**System Architecture:** Can I choose and defend system-wide design decisions based on requirements and trade-offs?
+
+**Platform Engineering:** Can I make software delivery more reliable, repeatable, and efficient for development teams?
+
+The objective is to demonstrate **progressive engineering capability**, not simply a collection of frameworks.
